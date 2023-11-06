@@ -100,14 +100,14 @@ services:
   #   depends_on :
   #     - mariadb
 
-#   staticwebiste :
-#     build : ./requirements/bonus/static_website
-#     container_name : static_website
-#     restart : on-failure
-#     ports :
-#       - 81:81
-#     networks :
-#       - myNetwork
+  staticwebiste :
+    build : ./requirements/bonus/static_website
+    container_name : static_website
+    restart : on-failure
+    ports :
+      - 81:81
+    networks :
+      - myNetwork
 
 volumes :
   DB :
