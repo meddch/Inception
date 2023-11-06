@@ -7,8 +7,6 @@ services:
     container_name : mariadb
     image : mariadb
     restart : on-failure
-    ports :
-      - 3306:3306
     env_file :
       - .env
     volumes :
@@ -50,8 +48,6 @@ services:
     container_name : wordpress
     image : wordpress
     restart : on-failure
-    ports :
-      - 9000:9000
     volumes :
       - wp:/var/www/html
     env_file :
@@ -60,17 +56,17 @@ services:
       - myNetwork
     depends_on :
       - mariadb
-      - redis
+      # - redis
 
-  redis :
-    build : ./requirements/bonus/redis
-    container_name : redis
-    image : redis
-    restart : on-failure
-    ports :
-      - 6379:6379
-    networks :
-      - myNetwork
+  # redis :
+  #   build : ./requirements/bonus/redis
+  #   container_name : redis
+  #   image : redis
+  #   restart : on-failure
+  #   ports :
+  #     - 6379:6379
+  #   networks :
+  #     - myNetwork
 
   # ftp :
   #   build : ./requirements/bonus/ftp
