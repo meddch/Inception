@@ -14,20 +14,20 @@ services:
     networks :
       - myNetwork
 
-  # cadvisor :
-  #   build : ./requirements/bonus/cadvisor
-  #   container_name : cadvisor
-  #   image : cadvisor
-  #   restart : on-failure
-  #   ports :
-  #     - 4000:4000
-  #   volumes:
-  #     - "/:/rootfs:ro"
-  #     - "/var/run:/var/run:ro"
-  #     - "/sys:/sys:ro
-  #     - "/var/lib/docker/:/var/lib/docker:ro"
-  #   networks :
-  #     - myNetwork
+  cadvisor :
+    build : ./requirements/bonus/cadvisor
+    container_name : cadvisor
+    image : cadvisor
+    restart : on-failure
+    ports :
+      - 4000:4000
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro
+      - "/var/lib/docker/:/var/lib/docker:ro"
+    networks :
+      - myNetwork
 
   nginx :
     build : ./requirements/nginx
@@ -56,54 +56,54 @@ services:
       - myNetwork
     depends_on :
       - mariadb
-      # - redis
+      - redis
 
-  # redis :
-  #   build : ./requirements/bonus/redis
-  #   container_name : redis
-  #   image : redis
-  #   restart : on-failure
-  #   ports :
-  #     - 6379:6379
-  #   networks :
-  #     - myNetwork
+  redis :
+    build : ./requirements/bonus/redis
+    container_name : redis
+    image : redis
+    restart : on-failure
+    ports :
+      - 6379:6379
+    networks :
+      - myNetwork
 
-  # ftp :
-  #   build : ./requirements/bonus/ftp
-  #   container_name : ftp
-  #   image : ftp
-  #   restart : on-failure
-  #   ports :
-  #     - 21:21
-  #     - 20:20
-  #     - 40000-40005:40000-40005
-  #   networks :
-  #     - myNetwork
-  #   volumes :
-  #     - wp:/home/mechane/
-  #   depends_on :
-  #     - wordpress
+  ftp :
+    build : ./requirements/bonus/ftp
+    container_name : ftp
+    image : ftp
+    restart : on-failure
+    ports :
+      - 21:21
+      - 20:20
+      - 40000-40005:40000-40005
+    networks :
+      - myNetwork
+    volumes :
+      - wp:/home/mechane/
+    depends_on :
+      - wordpress
 
-  # adminer :
-  #   build : ./requirements/bonus/adminer
-  #   container_name : adminer
-  #   image : adminer
-  #   restart : on-failure
-  #   ports :
-  #     - 8080:8080
-  #   networks :
-  #     - myNetwork
-  #   depends_on :
-  #     - mariadb
+  adminer :
+    build : ./requirements/bonus/adminer
+    container_name : adminer
+    image : adminer
+    restart : on-failure
+    ports :
+      - 8080:8080
+    networks :
+      - myNetwork
+    depends_on :
+      - mariadb
 
-  # staticwebiste :
-  #   build : ./requirements/bonus/static_website
-  #   container_name : static_website
-  #   restart : on-failure
-  #   ports :
-  #     - 81:81
-  #   networks :
-  #     - myNetwork
+  staticwebiste :
+    build : ./requirements/bonus/static_website
+    container_name : static_website
+    restart : on-failure
+    ports :
+      - 81:81
+    networks :
+      - myNetwork
 
 volumes :
   DB :
