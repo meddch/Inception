@@ -1,5 +1,6 @@
 apt update -y;
 apt install vsftpd -y
+apt install shadow -y
 service vsftpd start;
 adduser --gecos "" $username;
 echo "$username:$userpasswrd" | chpasswd;
