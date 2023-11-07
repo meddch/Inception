@@ -1,23 +1,25 @@
 server {
-    listen 443 ssl;
+	listen 443 ssl;
 
-    server_name mechane.42.fr;
+	ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 
-    ssl_protocols TLSv1.2;
+    ssl_protocols TLSv1.3;
+    root /var/www/html;
 
-	server_name mechane.42.fr;
-	root /var/www/html;
-	index index.php ;
+    index index.php;
 
+	access_log /var/log/nginx/nginx-access.log;
+	error_log /var/log/nginx/nginx-error.log;
 
-    location / {
-    try_files $uri $uri/ /index.php?$args;
-    }
+	location / {
+		try_files  $uri/ =404;
+	}
 
-    location ~ .php$ {
-        try_files $uri =404;
-        include /etc/nginx/fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_pass wordpress:9000;
-            }
+	location ~ .php$ {
+		try_files $uri =404;
+		fastcgi_pass wordpress:9000;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
 }
