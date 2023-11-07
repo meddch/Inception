@@ -12,6 +12,8 @@ services:
     networks:
       - inceptionNetwork
     restart: on-failure
+    env_file:
+      - .env
 
   nginx:
     build: ./requirements/nginx/
