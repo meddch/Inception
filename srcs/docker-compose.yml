@@ -9,6 +9,8 @@ services:
     restart : on-failure
     env_file :
       - .env
+    ports:
+      - 3306:3306
     volumes :
       - DB:/var/lib/mysql
     networks :
@@ -52,6 +54,8 @@ services:
       - wp:/var/www/html
     env_file :
       - .env
+    ports:
+      - 9000:9000
     networks :
       - myNetwork
     depends_on :
