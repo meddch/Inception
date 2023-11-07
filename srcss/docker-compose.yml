@@ -44,63 +44,63 @@ services:
       - .env
     depends_on:
       - mariadb
-      - redis
+      # - redis
 
 
-  redis:
-    build: ./requirements/bonus/redis
-    container_name: redis
-    image: redis
-    networks:
-      - inceptionNetwork
-    ports:
-      - 6379:6379
-    restart: on-failure
+  # redis:
+  #   build: ./requirements/bonus/redis
+  #   container_name: redis
+  #   image: redis
+  #   networks:
+  #     - inceptionNetwork
+  #   ports:
+  #     - 6379:6379
+  #   restart: on-failure
 
-  adminer:
-    build: ./requirements/bonus/adminer
-    container_name: adminer
-    image: adminer
-    networks:
-      - inceptionNetwork
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mariadb
-    restart: on-failure
+  # adminer:
+  #   build: ./requirements/bonus/adminer
+  #   container_name: adminer
+  #   image: adminer
+  #   networks:
+  #     - inceptionNetwork
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - mariadb
+  #   restart: on-failure
 
-  ftp:
-    container_name: ftp
-    build: ./requirements/bonus/ftp/
-    image: ftp
-    volumes:
-      - wp:/home/evblood/ftp/
-    networks:
-      - inceptionNetwork
-    ports:
-      - "40000-40005:40000-40005"
-      - "20:20"
-      - "21:21"
-    depends_on:
-      - wordpress
-    env_file:
-      - .env
-    restart: on-failure
+  # ftp:
+  #   container_name: ftp
+  #   build: ./requirements/bonus/ftp/
+  #   image: ftp
+  #   volumes:
+  #     - wp:/home/evblood/ftp/
+  #   networks:
+  #     - inceptionNetwork
+  #   ports:
+  #     - "40000-40005:40000-40005"
+  #     - "20:20"
+  #     - "21:21"
+  #   depends_on:
+  #     - wordpress
+  #   env_file:
+  #     - .env
+  #   restart: on-failure
 
-  cadvisor:
-    build: ./requirements/bonus/cadvisor
-    container_name: cadvisor
-    image: cadvisor
-    networks:
-      - inceptionNetwork
-    ports:
-      - 2000:2000
-    volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:ro"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
-    restart: on-failure
+  # cadvisor:
+  #   build: ./requirements/bonus/cadvisor
+  #   container_name: cadvisor
+  #   image: cadvisor
+  #   networks:
+  #     - inceptionNetwork
+  #   ports:
+  #     - 2000:2000
+  #   volumes:
+  #     - "/:/rootfs:ro"
+  #     - "/var/run:/var/run:ro"
+  #     - "/sys:/sys:ro"
+  #     - "/var/lib/docker/:/var/lib/docker:ro"
+  #   restart: on-failure
 
   staticwebsite:
     build: ./requirements/bonus/staticwebsite
