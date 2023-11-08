@@ -1,19 +1,19 @@
 version: '3.7'
 
 services:
-  mariadb:
-    build: ./requirements/mariadb/
-    container_name: mariadb
-    image: mariadb
-    ports:
-      - 3306:3306
-    volumes:
-      - DB:/var/lib/mysql
-    networks:
-      - inceptionNetwork
-    restart: on-failure
-    env_file:
-      - .env
+  # mariadb:
+  #   build: ./requirements/mariadb/
+  #   container_name: mariadb
+  #   image: mariadb
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - DB:/var/lib/mysql
+  #   networks:
+  #     - inceptionNetwork
+  #   restart: on-failure
+  #   env_file:
+      # - .env
 
   nginx:
     build: ./requirements/nginx/
@@ -42,9 +42,9 @@ services:
     restart: on-failure
     env_file:
       - .env
-    depends_on:
-      - mariadb
-      # - redis
+    # depends_on:
+    #   - mariadb
+    #   - redis
 
 
   # redis:
@@ -102,22 +102,22 @@ services:
   #     - "/var/lib/docker/:/var/lib/docker:ro"
   #   restart: on-failure
 
-  staticwebsite:
-    build: ./requirements/bonus/staticwebsite
-    container_name: staticwebsite
-    image: staticwebsite
-    networks:
-      - inceptionNetwork
-    ports:
-      - 81:81
-    restart: on-failure
+  # staticwebsite:
+  #   build: ./requirements/bonus/staticwebsite
+  #   container_name: staticwebsite
+  #   image: staticwebsite
+  #   networks:
+  #     - inceptionNetwork
+  #   ports:
+  #     - 81:81
+  #   restart: on-failure
 
 volumes:
-  DB:
-    driver_opts:
-      type: 'none'
-      o: bind
-      device: /home/mechane/data/mysql
+  # DB:
+  #   driver_opts:
+  #     type: 'none'
+  #     o: bind
+  #     device: /home/mechane/data/mysql
   wp:
     driver_opts:
       type: 'none'
