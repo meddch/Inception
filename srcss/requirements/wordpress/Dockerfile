@@ -14,7 +14,7 @@ COPY ./tools/config.sh ./config.sh
 
 RUN chmod +x ./config.sh && mkdir -p /var/www/html &&\
     chown -R www-data:www-data /var/www/html && mkdir -p /run/php &&\
-    chown -R www-data:www-data /run/php
+    chown -R www-data:www-data /run/php &&\
     cat /var/www/html/wp-config.php 
 EXPOSE 9000
 
