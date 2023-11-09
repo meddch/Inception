@@ -8,7 +8,7 @@ RUN apt update -y;\
     sed -i "s/#port/port/" /etc/mysql/mariadb.conf.d/50-server.cnf;\
     chmod 777 /var/run/mysqld;\
     sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf;\
-    mysql -u root < /tmp/db.sql; 
+    mysql -u root -p < /tmp/db.sql; 
 
 
 ENTRYPOINT [ "mysqld_safe" ]
