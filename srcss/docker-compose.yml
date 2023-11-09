@@ -113,11 +113,11 @@ services:
   #   restart: on-failure
 
 volumes:
-  # DB:
-  #   driver_opts:
-  #     type: 'none'
-  #     o: bind
-  #     device: /home/mechane/data/mysql
+  DB:
+    driver_opts:
+      type: 'none'
+      o: bind
+      device: /home/mechane/data/mysql
   wp:
     driver_opts:
       type: 'none'
