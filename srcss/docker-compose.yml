@@ -1,19 +1,19 @@
 version: '3.7'
 
 services:
-  # mariadb:
-  #   build: ./requirements/mariadb/
-  #   container_name: mariadb
-  #   image: mariadb
-  #   ports:
-  #     - 3306:3306
-  #   volumes:
-  #     - DB:/var/lib/mysql
-  #   networks:
-  #     - inceptionNetwork
-  #   restart: on-failure
-  #   env_file:
-      # - .env
+  mariadb:
+    build: ./requirements/mariadb/
+    container_name: mariadb
+    image: mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - DB:/var/lib/mysql
+    networks:
+      - inceptionNetwork
+    restart: on-failure
+    env_file:
+      - .env
 
   nginx:
     build: ./requirements/nginx/
@@ -42,8 +42,8 @@ services:
     restart: on-failure
     env_file:
       - .env
-    # depends_on:
-    #   - mariadb
+    depends_on:
+      - mariadb
     #   - redis
 
 
