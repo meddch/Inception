@@ -1,26 +1,21 @@
-FROM debian:buster
+ROM debian:buster
+
+RUN apt update && apt upgrade && apt install -y \
+    php7.3 \
+    php7.3-mysql \
+    php7.3-fpm \
+    curl
+
+RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar --output wp &&\
+    chmod +x wp &&\
+    mv wp /usr/local/bin/wp
+
+COPY ./tools/config.sh ./config.sh
+
+RUN chmod +x ./config.sh && mkdir -p /var/www/html &&\
+    chown -R www-data:www-data /var/www/html && mkdir -p /run/php &&\
+    chown -R www-data:www-data /run/php
 
 EXPOSE 9000
 
-RUN apt-get update && apt-get install -y \
-	php7.3-fpm \
-	php7.3-mysql \
-	curl && \
-	rm -rf /var/lib/apt/lists/*
-
-COPY ./tools/www.conf /etc/php/7.3/fpm/pool.d
-
-ADD https://wordpress.org/latest.tar.gz /var/www/latest.tar.gz
-
-RUN cd /var/www && tar -xvf latest.tar.gz && \
-	rm -rf latest.tar.gz
-
-RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar --output /usr/bin/wp --silent
-
-RUN chmod +x ./usr/bin/wp
-
-RUN mkdir /run/php
-
-COPY ./tools/config.sh /var/www/wordpress/config.sh
-RUN chmod +x /var/www/wordpress/config.sh
-CMD ["bash", "/var/www/wordpress/config.sh"]
+ENTRYPOINT ["./config.sh"]
