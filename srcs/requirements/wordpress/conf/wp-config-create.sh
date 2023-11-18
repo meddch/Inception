@@ -1,6 +1,6 @@
 #!bin/sh
-if [ ! -f "/var/www/wp-config.php" ]; then
-cat << EOF > /var/www/wp-config.php
+if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
+cat << EOF > /var/www/wordpress/wp-config.php
 <?php
 define('WP_DEBUG', true);
 define( 'DB_NAME', '$DB_NAME' );
@@ -22,3 +22,5 @@ define( 'WP_REDIS_DATABASE', 0 );
 require_once ABSPATH . 'wp-settings.php';
 EOF
 fi
+
+# /usr/sbin/php-fpm81 -F
