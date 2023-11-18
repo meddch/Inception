@@ -1,22 +1,36 @@
 FROM alpine:3.18.4
-ARG PHP_VERSION=81 \
-    DB_NAME \
+
+ARG DB_NAME \
     DB_USER \
-    DB_PASS
+    DB_USER_PASSWORD \
+    DB_ROOT_PASSWORD \
+    DB_HOST \
+    ROLE \
+    URL \
+    ADMIN_USER \
+    ADMIN_PASSWORD \
+    ADMIN_EMAIL \
+    TITLE \
+    USER_NAME \
+    USER_PASSWORD \
+    USER_EMAIL
+ 
 RUN apk update && apk upgrade && apk add --no-cache \
-    php${PHP_VERSION} \
-    php${PHP_VERSION}-fpm \
-    php${PHP_VERSION}-mysqli \
-    php${PHP_VERSION}-json \
-    php${PHP_VERSION}-curl \
-    php${PHP_VERSION}-dom \
-    php${PHP_VERSION}-exif \
-    php${PHP_VERSION}-fileinfo \
-    php${PHP_VERSION}-mbstring \
-    php${PHP_VERSION}-openssl \
-    php${PHP_VERSION}-xml \
-    php${PHP_VERSION}-zip \
-    php${PHP_VERSION}-redis \
+    php81 \
+    php81-fpm \
+    php81-mysqli \
+    php81-json \
+    php81-curl \
+    php81-dom \
+    php81-exif \
+    php81-fileinfo \
+    php81-mbstring \
+    php81-openssl \
+    php81-phar \
+    php81-xml \
+    php81-zip \
+    php81-redis \
+    mysql-client \
     wget \
     unzip && \
     sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
@@ -34,4 +48,7 @@ RUN wget https://wordpress.org/latest.zip && \
 COPY ./requirements/wordpress/conf/wp-config-create.sh .
 RUN sh wp-config-create.sh && rm wp-config-create.sh && \
     chmod -R 0777 wp-content/
+
+EXPOSE 9000
+
 CMD ["/usr/sbin/php-fpm81", "-F"]

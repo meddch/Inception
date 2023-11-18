@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ ! -d "/home/mechane/data" ]; then
-        mkdir /home/mechane/data
-        mkdir /home/mechane/data/mariadb
-        mkdir /home/mechane/data/wordpress
+if [ ! -d "/Users/mechane/Desktop/data" ]; then
+        mkdir /Users/mechane/Desktop/data/
+        mkdir /Users/mechane/Desktop/data/mariadb
+        mkdir /Users/mechane/Desktop/data/wordpress
 fi

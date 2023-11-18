@@ -2,8 +2,8 @@ FROM alpine:3.18.4
 
 ARG DB_NAME \
 	DB_USER \
-	DB_PASS \
-	DB_ROOT
+	DB__USER_PASSWORD \
+	DB_ROOT_PASSWORD
 
 RUN apk update && apk add --no-cache mariadb mariadb-client
 
