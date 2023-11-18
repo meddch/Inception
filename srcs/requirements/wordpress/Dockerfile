@@ -5,14 +5,14 @@ ARG DB_NAME \
     DB_USER_PASSWORD \
     DB_ROOT_PASSWORD \
     DB_HOST \
-    ROLE \
-    URL \
     ADMIN_USER \
     ADMIN_PASSWORD \
     ADMIN_EMAIL \
+    URL \
     TITLE \
     USER_NAME \
     USER_PASSWORD \
+    ROLE \
     USER_EMAIL
  
 RUN apk update && apk upgrade && apk add --no-cache \
@@ -32,20 +32,23 @@ RUN apk update && apk upgrade && apk add --no-cache \
     php81-redis \
     mysql-client \
     wget \
+    curl \
     unzip && \
-    sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \
+    sed -i "s|listen = wordpress:9000|listen = 9000|g" \
       /etc/php81/php-fpm.d/www.conf && \
     sed -i "s|;listen.owner = nobody|listen.owner = nobody|g" \
       /etc/php81/php-fpm.d/www.conf && \
     sed -i "s|;listen.group = nobody|listen.group = nobody|g" \
       /etc/php81/php-fpm.d/www.conf && \
     rm -f /var/cache/apk/*
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && mv wp-cli.phar /usr/bin/wp
 WORKDIR /var/www
-RUN wget https://wordpress.org/latest.zip && \
-    unzip latest.zip && \
-    cp -rf wordpress/* . && \
-    rm -rf wordpress latest.zip
-COPY ./requirements/wordpress/conf/wp-config-create.sh .
+# RUN wget https://wordpress.org/latest.zip && \
+#     unzip latest.zip && \
+#     cp -rf wordpress/* . && \
+#     rm -rf wordpress latest.zip
+COPY ./requirements/wordpress/tools/wp-config-create.sh .
 RUN sh wp-config-create.sh && rm wp-config-create.sh && \
     chmod -R 0777 wp-content/
 

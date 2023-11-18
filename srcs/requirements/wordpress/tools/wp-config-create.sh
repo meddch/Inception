@@ -1,8 +1,6 @@
 sleep 10
-mkdir -p /run/php
 
-sed -i'' 's|^listen = /run/php/php7.4-fpm.sock|listen = wordpress:9000|' /etc/php/7.4/fpm/pool.d/www.conf
-sed -i'' 's/;clear_env = no/clear_env = no/' /etc/php/7.4/fpm/pool.d/www.conf
+mkdir -p /run/php
 
 if [ -f "/var/www/wordpress/wp-config.php" ]; then
 	echo -e "wordpress is already installed and configured"
@@ -10,11 +8,10 @@ else
 	echo -e "install: wordpress"
 	cd /var/www/wordpress
 	wp core download --allow-root
-	wp config create --allow-root\
-		--dbname=$DB_NAME \
+	wp config create --dbname=$DB_NAME \
 		--dbuser=$DB_USER \
 		--dbpass=$DB_USER_PASSWORD \
-		--dbhost=$DB_HOST --path='/var/www/wordpress'
+		--dbhost='mariadb' --path='/var/www/'
 	wp core install --allow-root\
 		--url=$URL \
 		--title=$TITLE \
@@ -28,4 +25,4 @@ else
 		--role=$ROLE
 	
 fi
-/usr/sbin/php-fpm7.4 -F
+/usr/sbin/php-fpm81 -F
