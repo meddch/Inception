@@ -1,28 +1,25 @@
 FROM alpine:3.17
 
-
-ARG PHP_VERSION=81
-
 RUN apk update && apk upgrade && apk add --no-cache \
-    php${PHP_VERSION} \
-    php${PHP_VERSION}-common \
-    php${PHP_VERSION}-session \
-    php${PHP_VERSION}-iconv \
-    php${PHP_VERSION}-gd \
-    php${PHP_VERSION}-curl \
-    php${PHP_VERSION}-xml \
-    php${PHP_VERSION}-mysqli \
-    php${PHP_VERSION}-imap \
-    php${PHP_VERSION}-cgi \
-    php${PHP_VERSION}-pdo \
-    php${PHP_VERSION}-pdo_mysql \
-    php${PHP_VERSION}-soap \
-    php${PHP_VERSION}-posix \
-    php${PHP_VERSION}-gettext \
-    php${PHP_VERSION}-ldap \
-    php${PHP_VERSION}-ctype \
-    php${PHP_VERSION}-dom \
-    php${PHP_VERSION}-simplexml \
+    php81 \
+    php81-common \
+    php81-session \
+    php81-iconv \
+    php81-gd \
+    php81-curl \
+    php81-xml \
+    php81-mysqli \
+    php81-imap \
+    php81-cgi \
+    php81-pdo \
+    php81-pdo_mysql \
+    php81-soap \
+    php81-posix \
+    php81-gettext \
+    php81-ldap \
+    php81-ctype \
+    php81-dom \
+    php81-simplexml \
     wget
 
 WORKDIR /var/www

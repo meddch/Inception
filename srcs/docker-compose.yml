@@ -57,6 +57,7 @@ services:
     container_name: wordpress
     depends_on:
       - mariadb
+      - redis
     restart: unless-stopped
     networks:
       - inception
@@ -78,8 +79,8 @@ services:
 
   vsftpd:
     build:
-      context: .
-      dockerfile: requirements/bonus/vsftpd/Dockerfile
+      context: ./requirements/bonus/vsftpd
+      dockerfile: Dockerfile
       args:
         FTP_USR: ${FTP_USR}
         FTP_PWD: ${FTP_PWD}
@@ -91,6 +92,8 @@ services:
     networks:
       - inception
     restart: unless-stopped
+    env_file:
+      - .env
 
   adminer:
     build:
@@ -101,6 +104,19 @@ services:
       - mariadb
     ports:
       - "8080:8080"
+    networks:
+      - inception
+    restart: unless-stopped
+
+  portainer:
+    build:
+      context: .
+      dockerfile: requirements/bonus/portainer/Dockerfile
+    container_name: portainer
+    depends_on:
+      - mariadb
+    ports:
+      - "9000:9000"
     networks:
       - inception
     restart: unless-stopped
