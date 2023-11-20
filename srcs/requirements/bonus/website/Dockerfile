@@ -4,9 +4,9 @@ RUN	apk update && apk upgrade && apk add --no-cache nginx
 
 RUN apk update && apk upgrade && apk add wget nginx
 
-RUN  mkdir -p /var/www/website
+RUN  mkdir -p /var/www/html
 
-COPY ./tools/resume /var/www/website
+COPY ./tools/resume /var/www/html
 
 COPY ./conf/default.conf /etc/nginx/http.d/default.conf
 
