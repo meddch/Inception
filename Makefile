@@ -22,6 +22,7 @@ fclean: clean
 	@docker volume prune --force
 	rm -rf /Users/mechane/Desktop/data/mariadb
 	rm -rf /Users/mechane/Desktop/data/wordpress
+	rm -rf /Users/mechane/Desktop/data/portainer
 	rm -rf /Users/mechane/Desktop/data/
 
 .PHONY	: all build down re clean fclean

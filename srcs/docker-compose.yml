@@ -113,12 +113,26 @@ services:
       context: .
       dockerfile: requirements/bonus/portainer/Dockerfile
     container_name: portainer
-    depends_on:
-      - mariadb
     ports:
       - "9000:9000"
     networks:
       - inception
+    restart: unless-stopped
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  website:
+    build:
+      context: ./requirements/bonus/website
+      dockerfile: Dockerfile
+    container_name: website
+    ports:
+      - "80:80"
+    networks:
+      - inception
+    depends_on:
+      - nginx
     restart: unless-stopped
 
 volumes:
@@ -133,6 +147,12 @@ volumes:
       o: bind
       type: none
       device: /Users/mechane/Desktop/data/mariadb
+
+  portainer_data:
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/mechane/Desktop/data/portainer
 networks:
     inception:
         driver: bridge
