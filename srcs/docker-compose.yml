@@ -146,13 +146,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /mechane/mechane/Desktop/data/mariadb
+      device: /home/mechane/Desktop/data/mariadb
 
   portainer_data:
     driver_opts:
       o: bind
       type: none
-      device: /mechane/mechane/Desktop/data/portainer
+      device: /home/mechane/Desktop/data/portainer
 networks:
     inception:
         driver: bridge
