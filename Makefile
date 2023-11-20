@@ -1,14 +1,14 @@
 name = inception
 all:
 	@bash srcs/requirements/wordpress/tools/make_dir.sh
-	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up 
+	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up 
 
 build:
 	@bash srcs/requirements/wordpress/tools/make_dir.sh
-	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up  --build
+	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up  --build
 
 down:
-	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down -v
+	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env down -v
 
 re: clean build
 
