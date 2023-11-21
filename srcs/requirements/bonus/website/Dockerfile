@@ -12,4 +12,4 @@ COPY ./conf/default.conf /etc/nginx/http.d/default.conf
 
 EXPOSE 80
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"] 

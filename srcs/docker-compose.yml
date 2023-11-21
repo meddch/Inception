@@ -88,9 +88,11 @@ services:
     ports:
       - "21:21"
     volumes:
-      - wp-volume:/var/www/
+      - wp-volume:/var/www/wordpress
     networks:
       - inception
+    depends_on:
+      - wordpress
     restart: unless-stopped
     env_file:
       - .env
@@ -140,19 +142,19 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/mechane/Desktop/data//wordpress
+      device: /home/mechane/Desktop/data//wordpress
 
   db-volume:
     driver_opts:
       o: bind
       type: none
-      device: /Users/mechane/Desktop/data/mariadb
+      device: /home/mechane/Desktop/data/mariadb
 
   portainer_data:
     driver_opts:
       o: bind
       type: none
-      device: /Users/mechane/Desktop/data/portainer
+      device: /home/mechane/Desktop/data/portainer
 networks:
     inception:
         driver: bridge
