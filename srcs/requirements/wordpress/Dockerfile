@@ -25,11 +25,11 @@ RUN chmod +x /usr/bin/wp
 
 RUN mkdir -p /var/www 
 
-COPY ./tools/wp-config-create.sh /wp-config.sh
+COPY ./tools/wp.sh /wp-config.sh
 
 
 RUN chmod +x /wp-config.sh 
-    # sh /wp-config.sh
+
 
 RUN mkdir -p /var/www/wordpress && \
 	  cd /var/www/wordpress  && \
@@ -38,9 +38,5 @@ RUN mkdir -p /var/www/wordpress && \
 WORKDIR /var/www/wordpress
 
 
-
-
-
-
 CMD ["/wp-config.sh"]
-# CMD ["/usr/sbin/php-fpm81", "-F"]
+
