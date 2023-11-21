@@ -142,19 +142,19 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /home/mechane/Desktop/data//wordpress
+      device: /home/mechane/data//wordpress
 
   db-volume:
     driver_opts:
       o: bind
       type: none
-      device: /home/mechane/Desktop/data/mariadb
+      device: /home/mechane/data/mariadb
 
   portainer_data:
     driver_opts:
       o: bind
       type: none
-      device: /home/mechane/Desktop/data/portainer
+      device: /home/mechane/data/portainer
 networks:
     inception:
         driver: bridge

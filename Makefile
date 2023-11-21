@@ -1,18 +1,18 @@
 name = inception
 all:
 	@echo "Starting $(name)..."
-	@mkdir -p /home/mechane/Desktop/data
-    @mkdir -p /home/mechane/Desktop/data/mariadb
-    @mkdir -p /home/mechane/Desktop/data/wordpress
-    @mkdir -p /home/mechane/Desktop/data/portainer
+	@mkdir -p /home/mechane/data
+    @mkdir -p /home/mechane/data/mariadb
+    @mkdir -p /home/mechane/data/wordpress
+    @mkdir -p /home/mechane/data/portainer
 	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 build:
 	@echo "Building $(name)..."
-	@mkdir -p /home/mechane/Desktop/data
-    @mkdir -p /home/mechane/Desktop/data/mariadb
-    @mkdir -p /home/mechane/Desktop/data/wordpress
-    @mkdir -p /home/mechane/Desktop/data/portainer
+	@mkdir -p /home/mechane/data
+    @mkdir -p /home/mechane/data/mariadb
+    @mkdir -p /home/mechane/data/wordpress
+    @mkdir -p /home/mechane/data/portainer
 	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
 down:
@@ -33,9 +33,9 @@ fclean: clean
 	@docker system prune --all --force --volumes
 	@docker network prune --force
 	@docker volume prune --force
-	rm -rf /home/mechane/Desktop/data/mariadb
-	rm -rf /home/mechane/Desktop/data/wordpress
-	rm -rf /home/mechane/Desktop/data/portainer
-	rm -rf /home/mechane/Desktop/data/
+	rm -rf /home/mechane/data/mariadb
+	rm -rf /home/mechane/data/wordpress
+	rm -rf /home/mechane/data/portainer
+	rm -rf /home/mechane/data/
 
 .PHONY	: all build down re clean fclean
