@@ -1,18 +1,18 @@
 name = inception
 all:
 	@echo "Starting $(name)..."
-	@mkdir -p /home/mechane/data
-    @mkdir -p /home/mechane/data/mariadb
-    @mkdir -p /home/mechane/data/wordpress
-    @mkdir -p /home/mechane/data/portainer
+	@mkdir -p /home/mechane/data && \
+    mkdir -p /home/mechane/data/mariadb && \
+    mkdir -p /home/mechane/data/wordpress && \
+    mkdir -p /home/mechane/data/portainer
 	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 build:
 	@echo "Building $(name)..."
-	@mkdir -p /home/mechane/data
-    @mkdir -p /home/mechane/data/mariadb
-    @mkdir -p /home/mechane/data/wordpress
-    @mkdir -p /home/mechane/data/portainer
+	@mkdir -p /home/mechane/data && \
+    mkdir -p /home/mechane/data/mariadb && \
+    mkdir -p /home/mechane/data/wordpress && \
+    mkdir -p /home/mechane/data/portainer
 	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
 down:
