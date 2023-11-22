@@ -5,7 +5,7 @@ all:
     mkdir -p /home/mechane/data/mariadb && \
     mkdir -p /home/mechane/data/wordpress && \
     mkdir -p /home/mechane/data/portainer
-	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
+	@docker compose -f ./srcs/docker-compose.yml --env-file srcs/.env up 
 
 build:
 	@echo "Building $(name)..."
