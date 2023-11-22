@@ -30,12 +30,6 @@ COPY ./tools/wp-config.sh /wp-config.sh
 RUN chmod +x /wp-config.sh 
 
 
-RUN mkdir -p /var/www/wordpress && \
-	  cd /var/www/wordpress  && \
-	  wp core download --allow-root --path='/var/www/wordpress'
-
-WORKDIR /var/www/wordpress
-
 
 CMD ["/wp-config.sh"]
 
