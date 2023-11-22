@@ -25,11 +25,9 @@ clean: down
 	@echo "Cleaning $(name)..."
 	@docker system prune -a
 
-fclean: clean
+fclean: down
 	@echo "Force cleaning $(name)..."
 	@echo "Removing all containers..."
-	@docker stop $$(docker ps -qa)
-	@docker rm $$(docker ps -qa)
 	@docker system prune --all --force --volumes
 	@docker network prune --force
 	@docker volume prune --force
