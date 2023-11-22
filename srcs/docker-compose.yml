@@ -119,7 +119,7 @@ services:
       - "9000:9000"
     networks:
       - inception
-    restart: always
+    restart: on-failure
     volumes:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
