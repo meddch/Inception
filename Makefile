@@ -1,4 +1,6 @@
-name = inception
+name = Inception
+
+
 all:
 	@echo "Starting $(name)..."
 	@mkdir -p /home/mechane/data && \
