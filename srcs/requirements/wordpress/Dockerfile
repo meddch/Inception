@@ -23,9 +23,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 RUN chmod +x /usr/bin/wp
 
-RUN mkdir -p /var/www 
 
-COPY ./tools/wp.sh /wp-config.sh
+COPY ./tools/wp-config.sh /wp-config.sh
 
 
 RUN chmod +x /wp-config.sh 
